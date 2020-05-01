@@ -7,6 +7,7 @@ export var speed := 150
 var velocity : Vector2
 var can_pickup := false
 var item_local : Node
+var inventory := {}
 
 
 func _process(delta: float) -> void:
@@ -30,9 +31,18 @@ func _movement() -> Vector2:
 func _pickup(item) -> void:
 	if can_pickup:
 		if Input.is_action_just_pressed("ui_accept"):
-			print(item.name + " picked_up")
+			print(item.item_type)
+			_update_inventory(item)
 			emit_signal("picked_up")
-			
+
+
+func _update_inventory(item) -> void:
+	if inventory.has(item.item_type):
+		inventory[item.item_type] += item.quantity
+	else:
+		inventory[item.item_type] = item.quantity
+	print(inventory)
+	
 
 func on_pickup_entered(item) -> void:
 	item_local = item
