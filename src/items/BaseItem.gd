@@ -7,6 +7,8 @@ signal picked_up
 export (int) var quantity = 1
 export (String, "Junk", "Wood", "Metal") var item_type = "Junk"
 
+#onready var item_sprite: Sprite setget set_sprite
+
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("on_pickup_entered"):
@@ -20,3 +22,7 @@ func _on_body_exited(body: Node) -> void:
 
 func on_pickup() -> void:
 	queue_free()
+
+
+func set_sprite(item_type) -> void:
+	pass
