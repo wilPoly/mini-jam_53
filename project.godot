@@ -18,6 +18,15 @@ _global_script_class_icons={
 config/name="mini-jam_53"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=320
+window/size/height=240
+window/size/test_width=1280
+window/size/test_height=1024
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [input]
 
 ui_left={
@@ -49,6 +58,13 @@ ui_down={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="item"
+
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
