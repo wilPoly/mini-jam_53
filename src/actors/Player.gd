@@ -3,6 +3,8 @@ extends KinematicBody2D
 signal picked_up
 
 export var speed := 150
+export var health := 100.0
+export var health_max := 100.0
 
 var velocity : Vector2
 var can_pickup := false
@@ -28,20 +30,29 @@ func _movement() -> Vector2:
 	return velocity
 	
 	
-func _pickup(item) -> void:
+func _pickup(item: Node) -> void:
 	if can_pickup:
 		if Input.is_action_just_pressed("ui_accept"):
 			print(item.item_type)
 			_update_inventory(item)
 			emit_signal("picked_up")
+			_update_health(item.damage)
 
 
-func _update_inventory(item) -> void:
+func _update_inventory(item: Node) -> void:
 	if inventory.has(item.item_type):
 		inventory[item.item_type] += item.quantity
 	else:
 		inventory[item.item_type] = item.quantity
 	print(inventory)
+	
+
+func _update_health(health_change: float) -> void:
+	if health_change > 0:
+		min(health + health_change, health_max)
+	else:
+		health += health_change
+	print("Player's health: ", health)
 	
 
 func on_pickup_entered(item) -> void:
