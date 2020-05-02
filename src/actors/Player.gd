@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	velocity = _movement() * speed * delta
 	move_and_collide(velocity)
 	
+	
 func _movement() -> Vector2:
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -48,18 +49,30 @@ func _update_inventory(item: Node) -> void:
 	
 
 func _update_health(health_change: float) -> void:
-	if health_change > 0:
-		min(health + health_change, health_max)
-	else:
-		health += health_change
+	var new_health = health + health_change
+	health = min(new_health, health_max)
 	print("Player's health: ", health)
+
+
+func on_health_change(health_change: float):
+	_update_health(health_change)
 	
+
 
 func on_pickup_entered(item) -> void:
 	item_local = item
 	can_pickup = true
 	connect("picked_up", item, "on_pickup")
 	
+	
 func on_pickup_exited(item) -> void:
 	can_pickup = false
 	disconnect("picked_up", item, "on_pickup")
+
+
+func on_oasis_entered(oasis) -> void:
+	pass
+
+
+func on_oasis_exited(oasis) -> void:
+	pass
