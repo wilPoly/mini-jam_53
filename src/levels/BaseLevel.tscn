@@ -31,3 +31,7 @@ format = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
+
+[node name="EventTimer" type="Timer" parent="."]
+wait_time = 300.0
+[connection signal="timeout" from="EventTimer" to="." method="_on_EventTimer_timeout"]
