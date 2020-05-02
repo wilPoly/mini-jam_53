@@ -22,3 +22,7 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 current = true
+
+[node name="DeathTimer" type="Timer" parent="." index="3"]
+wait_time = 5.0
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

@@ -54,10 +54,14 @@ func _update_health(health_change: float) -> void:
 	print("Player's health: ", health)
 
 
+func _on_DeathTimer_timeout() -> void:
+#	
+	pass # Replace with function body.
+
+
 func on_health_change(health_change: float):
 	_update_health(health_change)
 	
-
 
 func on_pickup_entered(item) -> void:
 	item_local = item
@@ -69,10 +73,3 @@ func on_pickup_exited(item) -> void:
 	can_pickup = false
 	disconnect("picked_up", item, "on_pickup")
 
-
-func on_oasis_entered(oasis) -> void:
-	pass
-
-
-func on_oasis_exited(oasis) -> void:
-	pass
