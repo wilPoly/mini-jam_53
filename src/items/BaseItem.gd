@@ -2,12 +2,12 @@ extends Area2D
 
 signal picked_up
 
-#enum Type { JUNK, WOOD, METAL}
-#export (Type) var type
+export (String, "Junk", "Wood", "Metal", "Leather") var item_type = "Junk"
 export (int) var quantity = 1
-export (String, "Junk", "Wood", "Metal") var item_type = "Junk"
 
-#onready var item_sprite: Sprite setget set_sprite
+
+func _ready() -> void:
+	set_sprite()
 
 
 func _on_body_entered(body: Node) -> void:
@@ -24,5 +24,13 @@ func on_pickup() -> void:
 	queue_free()
 
 
-func set_sprite(item_type) -> void:
-	pass
+func set_sprite() -> void:
+	match item_type:
+		"Junk":
+			$Sprite.region_rect = Rect2(238, 425, 16, 16)
+		"Wood":
+			$Sprite.region_rect = Rect2(255, 459, 16, 16)
+		"Metal":
+			$Sprite.region_rect = Rect2(255, 425, 16, 16)
+		"Leather":
+			$Sprite.region_rect = Rect2(255, 510, 16, 16)

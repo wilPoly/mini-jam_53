@@ -12,7 +12,10 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 306, 510, 16, 16 )
+region_rect = Rect2( 255, 510, 16, 16 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
