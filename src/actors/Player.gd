@@ -5,11 +5,16 @@ signal picked_up
 export var speed := 150
 export var health := 100.0
 export var health_max := 100.0
+export var thirst_damage := -10.0
 
 var velocity : Vector2
 var can_pickup := false
 var item_local : Node
 var inventory := {}
+
+
+func _ready() -> void:
+	$DeathTimer.start()
 
 
 func _process(delta: float) -> void:
@@ -55,8 +60,7 @@ func _update_health(health_change: float) -> void:
 
 
 func _on_DeathTimer_timeout() -> void:
-#	
-	pass # Replace with function body.
+	_update_health(thirst_damage)
 
 
 func on_health_change(health_change: float):
@@ -73,3 +77,9 @@ func on_pickup_exited(item) -> void:
 	can_pickup = false
 	disconnect("picked_up", item, "on_pickup")
 
+
+func on_oasis_entered(oasis) -> void:
+	$DeathTimer.stop()
+
+func on_oasis_exited(oasis) -> void:
+	$DeathTimer.start()
