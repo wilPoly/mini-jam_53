@@ -11,13 +11,13 @@ tile_data = PoolIntArray( -458768, 0, 65537, -458767, 0, 65537, -458766, 0, 6553
 
 [node name="BaseItem" parent="." index="2" instance=ExtResource( 3 )]
 position = Vector2( 288, 240 )
-quantity = 3
 item_type = "Wood"
+quantity = 3
 
 [node name="BaseItem4" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 32, 256 )
-quantity = 2
 item_type = "Wood"
+quantity = 2
 
 [node name="BaseItem2" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 384, 120 )
