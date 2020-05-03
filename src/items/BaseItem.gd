@@ -1,8 +1,6 @@
 extends Area2D
 
-signal picked_up
-
-export (String, "Junk", "Wood", "Metal", "Leather") var item_type = "Junk"
+export (String, "Junk", "Leather", "Metal", "Wood") var item_type = "Junk"
 export (int) var quantity = 1
 export (float) var damage = -10.0
 
@@ -29,15 +27,15 @@ func _set_sprite() -> void:
 		"Junk":
 			$Sprite.region_rect = Rect2(238, 425, 16, 16)
 			damage_proba = 0.20
-		"Wood":
-			$Sprite.region_rect = Rect2(255, 459, 16, 16)
-			damage_proba = 0.05
-		"Metal":
-			$Sprite.region_rect = Rect2(255, 425, 16, 16)
-			damage_proba = 0.10
 		"Leather":
 			$Sprite.region_rect = Rect2(255, 510, 16, 16)
 			damage_proba = 0.01
+		"Metal":
+			$Sprite.region_rect = Rect2(255, 425, 16, 16)
+			damage_proba = 0.10
+		"Wood":
+			$Sprite.region_rect = Rect2(255, 459, 16, 16)
+			damage_proba = 0.05
 
 
 # TODO => probability that an item hurts player on pickup

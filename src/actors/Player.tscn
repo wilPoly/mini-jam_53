@@ -25,4 +25,5 @@ current = true
 
 [node name="DeathTimer" type="Timer" parent="." index="3"]
 wait_time = 5.0
+autostart = true
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

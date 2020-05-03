@@ -1,0 +1,243 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui/custom_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui/GUI.gd" type="Script" id=2]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen" type="VBoxContainer" parent="GUI"]
+margin_right = 316.0
+margin_bottom = 220.0
+
+[node name="Top" type="MarginContainer" parent="GUI/Screen"]
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_vertical = 0
+
+[node name="Background" type="ColorRect" parent="GUI/Screen/Top"]
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="HBoxContainer" parent="GUI/Screen/Top"]
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Screen/Top/Player"]
+margin_right = 37.0
+margin_bottom = 16.0
+custom_constants/margin_right = 0
+custom_constants/margin_left = 5
+
+[node name="Health" type="HBoxContainer" parent="GUI/Screen/Top/Player/MarginContainer"]
+margin_left = 5.0
+margin_right = 37.0
+margin_bottom = 16.0
+
+[node name="Label" type="Label" parent="GUI/Screen/Top/Player/MarginContainer/Health"]
+margin_right = 28.0
+margin_bottom = 16.0
+size_flags_horizontal = 0
+text = "Health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="GUI/Screen/Top/Player/MarginContainer/Health"]
+margin_left = 32.0
+margin_right = 32.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="HBoxContainer" parent="GUI/Screen/Top/Player"]
+margin_left = 41.0
+margin_right = 182.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Junk" type="HBoxContainer" parent="GUI/Screen/Top/Player/Inventory"]
+margin_left = 8.0
+margin_right = 30.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="GUI/Screen/Top/Player/Inventory/Junk"]
+margin_right = 18.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Junk"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="GUI/Screen/Top/Player/Inventory/Junk"]
+margin_left = 22.0
+margin_right = 22.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leather" type="HBoxContainer" parent="GUI/Screen/Top/Player/Inventory"]
+margin_left = 34.0
+margin_right = 71.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="GUI/Screen/Top/Player/Inventory/Leather"]
+margin_right = 33.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Leather"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="GUI/Screen/Top/Player/Inventory/Leather"]
+margin_left = 37.0
+margin_right = 37.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Metal" type="HBoxContainer" parent="GUI/Screen/Top/Player/Inventory"]
+margin_left = 75.0
+margin_right = 103.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="GUI/Screen/Top/Player/Inventory/Metal"]
+margin_right = 24.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Metal"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="GUI/Screen/Top/Player/Inventory/Metal"]
+margin_left = 28.0
+margin_right = 28.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wood" type="HBoxContainer" parent="GUI/Screen/Top/Player/Inventory"]
+margin_left = 107.0
+margin_right = 132.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="GUI/Screen/Top/Player/Inventory/Wood"]
+margin_right = 21.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Wood"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="GUI/Screen/Top/Player/Inventory/Wood"]
+margin_left = 25.0
+margin_right = 25.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objective" type="HBoxContainer" parent="GUI/Screen/Top/Player"]
+margin_left = 186.0
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="Text" type="Label" parent="GUI/Screen/Top/Player/Objective"]
+margin_right = 130.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Build a house before the storm"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterFill" type="CenterContainer" parent="GUI/Screen"]
+margin_top = 20.0
+margin_right = 316.0
+margin_bottom = 200.0
+size_flags_vertical = 3
+
+[node name="Bottom" type="MarginContainer" parent="GUI/Screen"]
+margin_top = 204.0
+margin_right = 316.0
+margin_bottom = 220.0
+size_flags_vertical = 0
+
+[node name="Background" type="ColorRect" parent="GUI/Screen/Bottom"]
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World" type="HBoxContainer" parent="GUI/Screen/Bottom"]
+margin_right = 316.0
+margin_bottom = 16.0
+size_flags_vertical = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EventConsole" type="Label" parent="GUI/Screen/Bottom/World"]
+margin_right = 312.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="StormTimer" type="Label" parent="GUI/Screen/Bottom/World"]
+margin_left = 316.0
+margin_right = 316.0
+margin_bottom = 16.0
+align = 2

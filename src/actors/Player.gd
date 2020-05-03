@@ -1,11 +1,14 @@
 extends KinematicBody2D
 
+signal health_changed
+signal item_picked_up
+
 signal picked_up
 
-export var speed := 150
-export var health := 100.0
-export var health_max := 100.0
-export var thirst_damage := -10.0
+export (int) var speed := 150
+export (float) var health = 100.0
+export (float) var health_max := 100.0
+export (float) var thirst_damage := -10.0
 
 var velocity : Vector2
 var can_pickup := false
@@ -15,6 +18,8 @@ var inventory := {}
 
 func _ready() -> void:
 	$DeathTimer.start()
+	connect("health_changed", $"../HUD", "on_health_changed")
+	connect("item_picked_up", $"../HUD", "on_item_picked_up")
 
 
 func _process(delta: float) -> void:
@@ -50,13 +55,14 @@ func _update_inventory(item: Node) -> void:
 		inventory[item.item_type] += item.quantity
 	else:
 		inventory[item.item_type] = item.quantity
-	print(inventory)
+	emit_signal("item_picked_up", inventory)
 	
 
 func _update_health(health_change: float) -> void:
 	var new_health = health + health_change
 	health = min(new_health, health_max)
-	print("Player's health: ", health)
+#	print("Player's health: ", health)
+	emit_signal("health_changed", health)
 
 
 func _on_DeathTimer_timeout() -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/graphics/water_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/levels/BaseLevel.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/16x16_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=4]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 2 )
@@ -34,4 +35,6 @@ format = 1
 
 [node name="EventTimer" type="Timer" parent="."]
 wait_time = 300.0
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
 [connection signal="timeout" from="EventTimer" to="." method="_on_EventTimer_timeout"]
