@@ -1,6 +1,6 @@
 extends Area2D
 
-export (String, "Junk", "Leather", "Metal", "Wood") var item_type = "Junk"
+export (String, "Junk", "Leather", "Metal", "Wood") var item_type = "Junk" #TODO => enum to streamline it
 export (int) var quantity = 1
 export (float) var damage = -10.0
 

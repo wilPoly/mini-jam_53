@@ -35,6 +35,7 @@ format = 1
 
 [node name="EventTimer" type="Timer" parent="."]
 wait_time = 300.0
+autostart = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 [connection signal="timeout" from="EventTimer" to="." method="_on_EventTimer_timeout"]

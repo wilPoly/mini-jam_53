@@ -12,8 +12,9 @@ export (float) var thirst_damage := -10.0
 
 var velocity : Vector2
 var can_pickup := false
+var can_craft := false
 var item_local : Node
-var inventory := {}
+var inventory := {"Junk": 0, "Leather": 0, "Metal": 0, "Wood": 0}
 
 
 func _ready() -> void:
@@ -59,11 +60,14 @@ func _update_inventory(item: Node) -> void:
 	
 
 func _update_health(health_change: float) -> void:
-	var new_health = health + health_change
+	var new_health :float = health + health_change
 	health = min(new_health, health_max)
 #	print("Player's health: ", health)
 	emit_signal("health_changed", health)
 
+
+func _craft() -> void:
+	pass
 
 func _on_DeathTimer_timeout() -> void:
 	_update_health(thirst_damage)
@@ -87,5 +91,14 @@ func on_pickup_exited(item) -> void:
 func on_oasis_entered(oasis) -> void:
 	$DeathTimer.stop()
 
+
 func on_oasis_exited(oasis) -> void:
 	$DeathTimer.start()
+
+
+func on_workbench_entered(workbench) -> void:
+	pass
+	
+
+func on_workbench_exited(workbench) -> void:
+	pass

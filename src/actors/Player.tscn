@@ -22,6 +22,8 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 
 [node name="DeathTimer" type="Timer" parent="." index="3"]
 wait_time = 5.0
