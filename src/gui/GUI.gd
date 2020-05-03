@@ -17,7 +17,7 @@ onready var storm_time_left = $"../EventTimer"
 
 func _ready() -> void:
 	health.text = String(player_health)
-	get_inventory_item(player_inventory)
+#	get_inventory_item(player_inventory)
 	set_objective(level_objective)
 
 
@@ -29,25 +29,25 @@ func on_health_changed(new_health) -> void:
 	health.text = String(new_health)
 
 
-func get_inventory_item(inventory) -> void:
-	var items = inventory.keys()
-	var quantities = inventory.values()
-	
-	for item in items:
-		match item:
+func get_inventory_item(type, quantity) -> void:	
+		match type:
 			"Junk":
-				inventory_junk.text = String(quantities[0])
+				inventory_junk.text = str(quantity)
+#				return "Picked up " + str(quantities[0]) + " Junk"
 			"Leather":
-				inventory_leather.text = String(quantities[1])
+				inventory_leather.text = str(quantity)
+#				return "Picked up " + str(quantities[1]) + " Leather"
 			"Metal":
-				inventory_metal.text = String(quantities[2])
+				inventory_metal.text = str(quantity)
+#				return "Picked up " + str(quantities[2]) + " Metal"
 			"Wood":
-				inventory_metal.text = String(quantities[3])
+				inventory_metal.text = str(quantity)
+#				return "Picked up " + str(quantities[3]) + " Wood"
 
 
-func on_item_picked_up(inventory) -> void:
-	get_inventory_item(inventory)
-
+func on_item_picked_up(type, quantity) -> void:
+	get_inventory_item(type, quantity)
+	event_console.text = "Picked up " + str(quantity) + " " + type
 
 func set_objective(text) -> void:
 	message.text = level_objective
@@ -62,3 +62,24 @@ func update_time(time_left:float) -> String:
 	minutes = int(time_left) / 60
 	time_string = str(minutes) + ":" + str(seconds)
 	return time_string
+
+
+
+#func get_inventory_item(inventory) -> void:
+#	var items = inventory.keys()
+#	var quantities = inventory.values()
+#
+#	for item in items:
+#		match item:
+#			"Junk":
+#				inventory_junk.text = String(quantities[0])
+##				return "Picked up " + str(quantities[0]) + " Junk"
+#			"Leather":
+#				inventory_leather.text = String(quantities[1])
+##				return "Picked up " + str(quantities[1]) + " Leather"
+#			"Metal":
+#				inventory_metal.text = String(quantities[2])
+##				return "Picked up " + str(quantities[2]) + " Metal"
+#			"Wood":
+#				inventory_metal.text = String(quantities[3])
+##				return "Picked up " + str(quantities[3]) + " Wood"

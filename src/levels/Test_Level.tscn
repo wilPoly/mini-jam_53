@@ -37,3 +37,6 @@ item_type = "Metal"
 [node name="Player" parent="." index="8" instance=ExtResource( 2 )]
 position = Vector2( 160, 128 )
 speed = 100
+
+[node name="EventTimer" parent="." index="9"]
+wait_time = 120.0

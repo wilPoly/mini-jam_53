@@ -46,17 +46,18 @@ func _pickup(item: Node) -> void:
 	if can_pickup:
 		if Input.is_action_just_pressed("ui_accept"):
 			print(item.item_type)
-			_update_inventory(item)
+#			_update_inventory(item)
 			emit_signal("picked_up")
 			_update_health(item.damage)
+			emit_signal("item_picked_up", item.item_type, item.quantity)
 
 
-func _update_inventory(item: Node) -> void:
-	if inventory.has(item.item_type):
-		inventory[item.item_type] += item.quantity
-	else:
-		inventory[item.item_type] = item.quantity
-	emit_signal("item_picked_up", inventory)
+#func _update_inventory(item: Node) -> void:
+#	if inventory.has(item.item_type):
+#		inventory[item.item_type] += item.quantity
+#	else:
+#		inventory[item.item_type] = item.quantity
+#	emit_signal("item_picked_up", inventory)
 	
 
 func _update_health(health_change: float) -> void:
