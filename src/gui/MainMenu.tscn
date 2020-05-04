@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui/custom_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui/MainMenu.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.145098, 0.196078, 0.2, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -18.0
+margin_right = 20.0
+margin_bottom = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="MarginContainer" parent="Buttons"]
+margin_right = 40.0
+margin_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 20, 8 )
+focus_mode = 2
+size_flags_vertical = 4
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Buttons/Play"]
+margin_right = 40.0
+margin_bottom = 16.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Play" type="Label" parent="Buttons/Play"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "Play"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons"]
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 20.0
+
+[node name="Quit" type="MarginContainer" parent="Buttons"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 20, 8 )
+focus_mode = 2
+size_flags_vertical = 8
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Buttons/Quit"]
+margin_right = 40.0
+margin_bottom = 16.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Quit" type="Label" parent="Buttons/Quit"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "Quit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_entered" from="Buttons/Play" to="." method="_on_Play_focus_entered"]
+[connection signal="focus_exited" from="Buttons/Play" to="." method="_on_Play_focus_exited"]
+[connection signal="gui_input" from="Buttons/Play" to="." method="_on_Play_gui_input"]
+[connection signal="focus_entered" from="Buttons/Quit" to="." method="_on_Quit_focus_entered"]
+[connection signal="focus_exited" from="Buttons/Quit" to="." method="_on_Quit_focus_exited"]
