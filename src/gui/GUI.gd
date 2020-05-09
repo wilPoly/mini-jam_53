@@ -60,6 +60,7 @@ func get_inventory_item(inventory) -> void:
 		match item:
 			"Junk":
 				inventory_junk.set_text(String(quantities[0]))
+				# TODO => send internal signal to update_console
 				continue
 			"Leather":
 				inventory_leather.set_text(String(quantities[1]))
@@ -73,6 +74,7 @@ func get_inventory_item(inventory) -> void:
 
 
 func update_console(inventory) -> String:
+	# TODO => receive internal signal when item picked up (inventory updated)
 	var items = inventory.keys()
 	var quantities = inventory.values()
 
