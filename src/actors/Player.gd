@@ -3,6 +3,8 @@ extends KinematicBody2D
 signal health_changed
 signal item_picked_up
 
+signal crafting
+
 signal picked_up
 
 export (int) var speed := 150
@@ -14,7 +16,8 @@ var velocity : Vector2
 var can_pickup := false
 var can_craft := false
 var item_local : Node
-var inventory := {"Junk": 0, "Leather": 0, "Metal": 0, "Wood": 0}
+#var workbench_local : Node
+var inventory = {"Junk": 0, "Leather": 0, "Metal": 0, "Wood": 0}
 
 
 func _ready() -> void:
@@ -25,6 +28,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_pickup(item_local)
+	_craft()
 
 
 func _physics_process(delta: float) -> void:
@@ -46,18 +50,16 @@ func _pickup(item: Node) -> void:
 	if can_pickup:
 		if Input.is_action_just_pressed("ui_accept"):
 			print(item.item_type)
-#			_update_inventory(item)
+			_update_inventory(item)
 			emit_signal("picked_up")
 			_update_health(item.damage)
-			emit_signal("item_picked_up", item.item_type, item.quantity)
+#			emit_signal("item_picked_up", item.item_type, item.quantity)
 
 
-#func _update_inventory(item: Node) -> void:
-#	if inventory.has(item.item_type):
-#		inventory[item.item_type] += item.quantity
-#	else:
-#		inventory[item.item_type] = item.quantity
-#	emit_signal("item_picked_up", inventory)
+func _update_inventory(item: Node) -> void:
+	inventory[item.item_type] += item.quantity
+	emit_signal("item_picked_up", inventory)
+	print(inventory)
 	
 
 func _update_health(health_change: float) -> void:
@@ -98,7 +100,8 @@ func on_oasis_exited(oasis) -> void:
 
 
 func on_workbench_entered(workbench) -> void:
-	pass
+	can_craft = true
+	connect("crafting", workbench, "craft")
 	
 
 func on_workbench_exited(workbench) -> void:

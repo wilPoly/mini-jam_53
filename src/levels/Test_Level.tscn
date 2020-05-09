@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/items/BaseItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Oasis.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/world/Workbench.tscn" type="PackedScene" id=5]
 
 [node name="Test_Level" instance=ExtResource( 1 )]
 objective = "Build a shed before the storm. Get 5 Wood and 1 Metal.
@@ -34,9 +35,12 @@ quantity = 2
 position = Vector2( 240, 336 )
 item_type = "Metal"
 
-[node name="Player" parent="." index="8" instance=ExtResource( 2 )]
+[node name="Workbench" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 192, 144 )
+
+[node name="Player" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 160, 128 )
 speed = 100
 
-[node name="EventTimer" parent="." index="9"]
+[node name="EventTimer" parent="." index="10"]
 wait_time = 120.0
