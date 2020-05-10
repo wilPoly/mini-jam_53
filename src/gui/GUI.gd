@@ -33,10 +33,7 @@ func on_health_changed(new_health) -> void:
 
 func on_item_picked_up(item, quantity) -> void:
 	update_inventory(item, quantity)
-	pass
-#	get_inventory_item(inventory)
-#	event_console.text = "Picked up " + str(quantity) + " " + type
-#	event_console.text = update_console(inventory)
+
 
 func set_objective(text) -> void:
 	message.text = level_objective
@@ -87,18 +84,3 @@ func update_inventory(item, quantity) -> void:
 		"Wood":
 			inventory_metal.set_text(str(quantity))
 			event_console.set_text("Picked up " + str(quantity) + " Wood")
-
-#func get_inventory_item(item_type, quantity) -> void:	
-#		match type:
-#			"Junk":
-#				inventory_junk.text = str(quantity)
-##				return "Picked up " + str(quantities[0]) + " Junk"
-#			"Leather":
-#				inventory_leather.text = str(quantity)
-##				return "Picked up " + str(quantities[1]) + " Leather"
-#			"Metal":
-#				inventory_metal.text = str(quantity)
-##				return "Picked up " + str(quantities[2]) + " Metal"
-#			"Wood":
-#				inventory_metal.text = str(quantity)
-##				return "Picked up " + str(quantities[3]) + " Wood"

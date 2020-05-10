@@ -6,6 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Workbench" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -15,3 +17,5 @@ region_rect = Rect2( 187, 357, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

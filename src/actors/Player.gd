@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
+# HUD
 signal health_changed
 signal item_picked_up
 
+# Workbench
 signal crafting
 
+# Items
 signal picked_up
 
 export (int) var speed := 150
@@ -16,7 +19,8 @@ var velocity : Vector2
 var can_pickup := false
 var can_craft := false
 var item_local : Node
-#var workbench_local : Node
+var workbench_local : Node
+var craft_default : Node
 var inventory = {"Junk": 0, "Leather": 0, "Metal": 0, "Wood": 0}
 
 
@@ -49,28 +53,26 @@ func _movement() -> Vector2:
 func _pickup(item: Node) -> void:
 	if can_pickup:
 		if Input.is_action_just_pressed("ui_accept"):
-			print(item.item_type)
 			_update_inventory(item)
 			emit_signal("picked_up")
 			_update_health(item.damage)
-#			emit_signal("item_picked_up", item.item_type, item.quantity)
 
 
 func _update_inventory(item: Node) -> void:
 	inventory[item.item_type] += item.quantity
 	emit_signal("item_picked_up", item.item_type, item.quantity)
-	print(inventory)
-	
+
 
 func _update_health(health_change: float) -> void:
 	var new_health :float = health + health_change
 	health = min(new_health, health_max)
-#	print("Player's health: ", health)
 	emit_signal("health_changed", health)
 
 
 func _craft() -> void:
-	pass
+	if can_craft:
+		if Input.is_action_just_pressed("ui_accept"):
+			emit_signal("crafting", inventory, craft_default)
 
 func _on_DeathTimer_timeout() -> void:
 	_update_health(thirst_damage)
@@ -100,9 +102,12 @@ func on_oasis_exited(oasis) -> void:
 
 
 func on_workbench_entered(workbench) -> void:
+	workbench_local = workbench
 	can_craft = true
-	connect("crafting", workbench, "craft")
+	print("Craft enabled")
+	connect("crafting", workbench, "on_craft")
 	
 
 func on_workbench_exited(workbench) -> void:
-	pass
+	can_craft = false
+	disconnect("crafting", workbench, "on_craft")

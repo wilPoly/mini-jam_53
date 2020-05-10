@@ -36,7 +36,7 @@ position = Vector2( 240, 336 )
 item_type = "Metal"
 
 [node name="Workbench" parent="." index="8" instance=ExtResource( 5 )]
-position = Vector2( 192, 144 )
+position = Vector2( 193, 161 )
 
 [node name="Player" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 160, 128 )
