@@ -58,7 +58,7 @@ func _pickup(item: Node) -> void:
 
 func _update_inventory(item: Node) -> void:
 	inventory[item.item_type] += item.quantity
-	emit_signal("item_picked_up", inventory)
+	emit_signal("item_picked_up", item.item_type, item.quantity)
 	print(inventory)
 	
 

@@ -14,13 +14,12 @@ onready var player_inventory = $"../Player".inventory
 onready var level_objective = get_parent().objective
 onready var storm_time_left = $"../EventTimer"
 
-var inventory_item_name = []
-var inventory_item_quantity = []
+var item_last_quantity : int
 
 
 func _ready() -> void:
 	health.text = String(player_health)
-	get_inventory_item(player_inventory)
+	set_inventory(player_inventory)
 	set_objective(level_objective)
 
 
@@ -32,10 +31,12 @@ func on_health_changed(new_health) -> void:
 	health.text = String(new_health)
 
 
-func on_item_picked_up(inventory) -> void:
-	get_inventory_item(inventory)
+func on_item_picked_up(item, quantity) -> void:
+	update_inventory(item, quantity)
+	pass
+#	get_inventory_item(inventory)
 #	event_console.text = "Picked up " + str(quantity) + " " + type
-	event_console.text = update_console(inventory)
+#	event_console.text = update_console(inventory)
 
 func set_objective(text) -> void:
 	message.text = level_objective
@@ -52,7 +53,7 @@ func update_time(time_left:float) -> String:
 	return time_string
 
 
-func get_inventory_item(inventory) -> void:
+func set_inventory(inventory) -> void:
 	var items = inventory.keys()
 	var quantities = inventory.values()
 
@@ -60,7 +61,6 @@ func get_inventory_item(inventory) -> void:
 		match item:
 			"Junk":
 				inventory_junk.set_text(String(quantities[0]))
-				# TODO => send internal signal to update_console
 				continue
 			"Leather":
 				inventory_leather.set_text(String(quantities[1]))
@@ -73,24 +73,22 @@ func get_inventory_item(inventory) -> void:
 				continue
 
 
-func update_console(inventory) -> String:
-	# TODO => receive internal signal when item picked up (inventory updated)
-	var items = inventory.keys()
-	var quantities = inventory.values()
+func update_inventory(item, quantity) -> void:
+	match item:
+		"Junk":
+			inventory_junk.set_text(str(quantity))
+			event_console.set_text("Picked up " + str(quantity) + " Junk")
+		"Leather":
+			inventory_leather.set_text(str(quantity))
+			event_console.set_text("Picked up " + str(quantity) + " Leather")
+		"Metal":
+			inventory_metal.set_text(str(quantity))
+			event_console.set_text("Picked up " + str(quantity) + " Metal")
+		"Wood":
+			inventory_metal.set_text(str(quantity))
+			event_console.set_text("Picked up " + str(quantity) + " Wood")
 
-	for item in items:
-		match item:
-			"Junk":
-				return "Picked up " + str(quantities[0]) + " Junk"
-			"Leather":
-				return "Picked up " + str(quantities[1]) + " Leather"
-			"Metal":
-				return "Picked up " + str(quantities[2]) + " Metal"
-			"Wood":
-				return "Picked up " + str(quantities[3]) + " Wood"
-	return ""
-
-#func get_inventory_item(inventory) -> void:	
+#func get_inventory_item(item_type, quantity) -> void:	
 #		match type:
 #			"Junk":
 #				inventory_junk.text = str(quantity)
