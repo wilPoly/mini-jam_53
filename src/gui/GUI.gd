@@ -51,6 +51,9 @@ func update_time(time_left:float) -> String:
 
 
 func set_inventory(inventory) -> void:
+#	TODO => refactor
+#	for key in dict:
+#    print(key, " -> ", dict[key])
 	var items = inventory.keys()
 	var quantities = inventory.values()
 
